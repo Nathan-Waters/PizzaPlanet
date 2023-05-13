@@ -2,3 +2,11 @@ body {
     max-width: 1000px;
     margin: auto;
 }
+
+div.card{
+    margin-bottom: 20px;
+}
+
+section#homeBody{
+    margin-bottom: 30px;
+}
