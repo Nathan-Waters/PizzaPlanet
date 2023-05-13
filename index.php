@@ -25,6 +25,14 @@ $f3->route('GET /', function() {
     echo $view->render('views/home.html');
 });
 
+//about us
+$f3->route('GET /about', function() {
+
+    // Display a view page
+    $view = new Template();
+    echo $view->render('views/about.html');
+});
+
 // Run Fat-Free
 $f3->run();
 
