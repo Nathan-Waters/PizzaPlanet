@@ -24,6 +24,13 @@ $f3->route('GET /', function() {
     $view = new Template();
     echo $view->render('views/home.html');
 });
+// non default that routes to home page
+$f3->route('GET /home', function() {
+
+    // Display a view page
+    $view = new Template();
+    echo $view->render('views/home.html');
+});
 
 //about us
 $f3->route('GET /about', function() {
