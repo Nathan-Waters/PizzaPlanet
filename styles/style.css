@@ -1,4 +1,5 @@
 body {
+    text-align: center;
     max-width: 1000px;
     margin: auto;
 }
@@ -7,6 +8,13 @@ div.card{
     margin-bottom: 20px;
 }
 
-section#homeBody{
-    margin-bottom: 30px;
+footer{
+    text-align: center;
+    padding: 10px;
+    background-color: #DD571C;
+}
+
+footer svg {
+    margin-left: 10px;
+    margin-right: 10px;
 }
