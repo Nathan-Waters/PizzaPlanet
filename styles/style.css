@@ -24,7 +24,11 @@ footer svg {
     margin-right: 10px;
 }
 
-img#samsImage.rounded{
+img#samsImage.rounded {
     width: 150px;
     hight: 150px;
+}
+
+img#joshsImage {
+    width: 10rem;
 }
