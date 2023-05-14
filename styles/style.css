@@ -23,3 +23,8 @@ footer svg {
     margin-left: 10px;
     margin-right: 10px;
 }
+
+img#samsImage.rounded{
+    width: 150px;
+    hight: 150px;
+}
