@@ -3,11 +3,26 @@ body {
     max-width: 1000px;
     margin: auto;
     background-color: rgba(255, 84, 11, 0.6);
+    /*font-family: "Arial Black";*/
+}
+/*Start of the section of code that is responsible for the header styles*/
+header {
+
+    background-color: rgba(255, 84, 11, 0.6);
+    font-family: "Arial Black";
+    padding-top: 10px;
 }
 
-header {
-    background-color: #DD571C;
+a#shoppingCart.nav-link{
+    position: absolute;
+    right: 10px;
 }
+
+nav.navbar.navbar-expand-lg.bg-body-tertiary{
+    border-radius: 25px;
+}
+
+/*End of the section of code that is responsible for the header styles*/
 
 div.card{
     margin-bottom: 20px;
@@ -16,7 +31,7 @@ div.card{
 footer{
     text-align: center;
     padding: 10px;
-    background-color: #DD571C;
+    background-color: #EB5C1E;
 }
 
 footer svg {
