@@ -2,9 +2,22 @@ body {
     text-align: center;
     max-width: 1000px;
     margin: auto;
-    background-color: rgba(255, 84, 11, 0.6);
+    background-color: rgba(255, 255, 255, 0.6);
     /*font-family: "Arial Black";*/
 }
+
+.accent {
+    background-color: rgba(233, 84, 78, 0.95);
+}
+
+.card {
+    width: 100%;
+}
+
+.card-text {
+    color: white;
+}
+
 /*Start of the section of code that is responsible for the header styles*/
 header {
 
@@ -18,14 +31,16 @@ a#shoppingCart.nav-link{
     right: 10px;
 }
 
-nav.navbar.navbar-expand-lg.bg-body-tertiary{
+nav.navbar.navbar-expand-lg.bg-body-tertiary {
     border-radius: 25px;
+    background-color: rgba(233, 84, 78, 0.95) !important;
 }
 
 /*End of the section of code that is responsible for the header styles*/
 
 div.card{
     margin-bottom: 20px;
+    width: 100%;
 }
 
 
@@ -43,7 +58,7 @@ img#joshsImage {
 footer{
     text-align: center;
     padding: 10px;
-    background-color: white;
+    /*background-color: white;*/
     border-radius: 25px;
     margin-bottom: 10px;
 
