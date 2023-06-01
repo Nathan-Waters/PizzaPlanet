@@ -1,9 +1,35 @@
-
 <include href="views/includes/header.html"></include>
 <body>
 <include href="views/includes/nav.html"></include>
-<section>
+<section class="container">
+    <h1>Custom Pizza!</h1>
 
+    <form action="#" method="post"></form>
+    <div class="row">
+
+        <div class="col-6">
+            <repeat group="{{@crust}}" value="{{@crust}}">
+                <h4>{{@crust}}</h4>
+            </repeat>
+
+            <select class="form-select" aria-label="Default select example">
+                <option selected value="traditional">Traditional Hand Tossed</option>
+                <option value="thin-crust">Thin Crust</option>
+                <option value="stuffed-crust">Stuffed Crust</option>
+            </select>
+        </div>
+        <div class="col-6">
+            <h4>Type of Sauce</h4>
+            <select class="form-select" aria-label="Default select example">
+                <option selected value="marinara">Classic Marinara</option>
+                <option value="alfredo">Alfredo</option>
+                <option value="buffalo">Buffalo</option>
+                <option value="bbq">Barbecue</option>
+            </select>
+        </div>
+
+
+    </div>
 </section>
 <include href="views/includes/footer.html"></include>
 </body>
