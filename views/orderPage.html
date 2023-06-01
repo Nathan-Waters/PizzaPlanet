@@ -8,27 +8,39 @@
     <div class="row">
 
         <div class="col-6">
-            <repeat group="{{@crust}}" value="{{@crust}}">
-                <h4>{{@crust}}</h4>
-            </repeat>
-
+            <h4>Choose Add Crust</h4>
             <select class="form-select" aria-label="Default select example">
-                <option selected value="traditional">Traditional Hand Tossed</option>
-                <option value="thin-crust">Thin Crust</option>
-                <option value="stuffed-crust">Stuffed Crust</option>
+                <repeat group="{{@crust}}" value="{{@crust}}">
+                    <option value="{{@crust}}"> {{@crust}}</option>
+                </repeat>
             </select>
         </div>
         <div class="col-6">
             <h4>Type of Sauce</h4>
             <select class="form-select" aria-label="Default select example">
-                <option selected value="marinara">Classic Marinara</option>
-                <option value="alfredo">Alfredo</option>
-                <option value="buffalo">Buffalo</option>
-                <option value="bbq">Barbecue</option>
+                <repeat group="{{sauce}}" value="{{sauce}}">
+                    <option value="{{sauce}}">{{sauce}}</option>
+                </repeat>
             </select>
         </div>
+    </div>
+    <h4>What Toppings?</h4>
+    <div class="row">
+        <div class="col-9">
 
 
+                <repeat group="{{toppings}}" value="{{toppings}}">
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="toppings[]"
+                            id="{{toppings}}"
+                            value="{{toppings}}"
+                        >{{toppings}}
+                    </label>
+                </repeat>
+
+        </div>
     </div>
 </section>
 <include href="views/includes/footer.html"></include>
