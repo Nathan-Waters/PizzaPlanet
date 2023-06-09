@@ -58,6 +58,13 @@ $f3->route('GET|POST /order', function($f3) {
     echo $view->render('views/orderPage.html');
 });
 
+$f3->route('GET /login', function() {
+
+    // Display a view page
+    $view = new Template();
+    echo $view->render('views/login.html');
+});
+
 // Run Fat-Free
 $f3->run();
 
