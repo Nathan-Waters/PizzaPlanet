@@ -52,6 +52,7 @@ $f3->route('GET|POST /order', function($f3) {
     $f3->set('crust', getCrust());
     $f3->set('sauce', getSauce());
     $f3->set('toppings', getToppings());
+    $f3->set('size', getSize());
     // Display a view page
     $view = new Template();
     echo $view->render('views/orderPage.html');

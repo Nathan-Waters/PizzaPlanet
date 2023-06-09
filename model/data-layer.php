@@ -21,3 +21,8 @@ function getToppings(){
         "Tomatoes", "Peppers", "Prosciutto", "Fresh Mazzarella", "Basil Pesto");
     return $toppings;
 }
+
+function getSize(){
+    $size = array("9 Inch", "12 Inch", "14 Inch");
+    return $size;
+}
