@@ -24,43 +24,24 @@ $con = new Controller($f3);
 $f3->route('GET /', function() {
     $GLOBALS['con']->home();
 });
+
 // non default that routes to home page
 $f3->route('GET /home', function() {
-
-    // Display a view page
-    $view = new Template();
-    echo $view->render('views/home.html');
+    $GLOBALS['con']->home();
 });
 
 //about us
 $f3->route('GET /about', function() {
-
-    // Display a view page
-    $view = new Template();
-    echo $view->render('views/about.html');
+    $GLOBALS['con']->aboutUs();
 });
 
 //order page
 $f3->route('GET|POST /order', function($f3) {
-
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
-
-    }
-
-    $f3->set('crust', getCrust());
-    $f3->set('sauce', getSauce());
-    $f3->set('toppings', getToppings());
-    $f3->set('size', getSize());
-    // Display a view page
-    $view = new Template();
-    echo $view->render('views/orderPage.html');
+    $GLOBALS['con']->order();
 });
 
 $f3->route('GET /login', function() {
-
-    // Display a view page
-    $view = new Template();
-    echo $view->render('views/login.html');
+    $GLOBALS['con']->login();
 });
 
 // Run Fat-Free
