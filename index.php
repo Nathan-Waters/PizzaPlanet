@@ -18,13 +18,11 @@ require_once('model/validation.php');
 
 // Create an F3 (Fat-Free Framework) object
 $f3 = Base::instance();
+$con = new Controller($f3);
 
 // Define a default route
 $f3->route('GET /', function() {
-
-    // Display a view page
-    $view = new Template();
-    echo $view->render('views/home.html');
+    $GLOBALS['con']->home();
 });
 // non default that routes to home page
 $f3->route('GET /home', function() {
