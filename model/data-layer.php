@@ -18,7 +18,7 @@ function getSauce(){
 
 function getToppings(){
     $toppings = array("Pepperoni", "Mushrooms", "Bell Peppers", "Onions", "Sausage", "Olives", "Fresh Basil",
-        "Tomatoes", "Peppers", "Prosciutto", "Fresh Mazzarella", "Basil Pesto");
+        "Tomatoes", "Peppers", "Prosciutto", "Fresh Mozzarella", "Basil Pesto");
     return $toppings;
 }
 

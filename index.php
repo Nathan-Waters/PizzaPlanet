@@ -20,6 +20,9 @@ require_once('model/validation.php');
 $f3 = Base::instance();
 $con = new Controller($f3);
 
+
+//$dataLayer = new DataLayer();
+
 // Define a default route
 $f3->route('GET /', function() {
     $GLOBALS['con']->home();
@@ -35,12 +38,20 @@ $f3->route('GET /about', function() {
     $GLOBALS['con']->aboutUs();
 });
 
+$f3->route('GET|POST /admin', function() {
+    $GLOBALS['con']->admin();
+});
+
+$f3->route('GET|POST /guest', function() {
+    $GLOBALS['con']->guest();
+});
+
 //order page
-$f3->route('GET|POST /order', function($f3) {
+$f3->route('GET|POST /order', function() {
     $GLOBALS['con']->order();
 });
 
-$f3->route('GET /login', function() {
+$f3->route('GET|POST /login', function() {
     $GLOBALS['con']->login();
 });
 
