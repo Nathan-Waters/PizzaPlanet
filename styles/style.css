@@ -1,5 +1,4 @@
 body {
-    text-align: center;
     max-width: 1000px;
     margin: auto;
     background-color: rgba(255, 255, 255, 0.6);
@@ -69,3 +68,16 @@ footer svg {
     margin-right: 10px;
 }
 /*End of the section of code that is responsible for the footer styles*/
+
+/*Start of the section of code that is responsible for the orderPage styles*/
+
+div#makePizza{
+    margin: auto;
+    display: block;
+}
+
+button.btn.btn-primary.m-4.form-control{
+    background-color: rgba(233, 84, 78, 0.95);
+    border: none;
+    width: 25%;
+}
