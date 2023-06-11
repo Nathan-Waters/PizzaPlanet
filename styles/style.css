@@ -44,8 +44,9 @@ div.card{
 
 
 img#samsImage.rounded {
-    width: 150px;
-    hight: 150px;
+    width: 160px;
+    hight: 160px;
+    margin-left: 50px;
 }
 
 img#joshsImage {
@@ -71,13 +72,11 @@ footer svg {
 
 /*Start of the section of code that is responsible for the orderPage styles*/
 
-div#makePizza{
-    margin: auto;
-    display: block;
+button.btn.btn-primary.m-4.form-control{
+    background-color: rgba(189, 195, 199, 0.95);
+    color: #191917;
+    border: none;
+    width: 30%;
 }
 
-button.btn.btn-primary.m-4.form-control{
-    background-color: rgba(233, 84, 78, 0.95);
-    border: none;
-    width: 25%;
-}
+/*End of the section of code that is responsible for the orderPage styles*/
