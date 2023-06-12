@@ -101,6 +101,9 @@ class Controller
     {
 //        if($_SERVER['REQUEST_METHOD'] == "POST"){
 //
+//            //var_dump($_POST);
+//
+//
 //        }
 
         $this->_f3->set('crust', getCrust());
@@ -111,4 +114,6 @@ class Controller
         $view = new Template();
         echo $view->render('views/orderPage.html');
     }
+
+
 }
