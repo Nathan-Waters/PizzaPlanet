@@ -51,6 +51,10 @@ $f3->route('GET|POST /order', function() {
     $GLOBALS['con']->order();
 });
 
+$f3->route('GET|POST /menu', function() {
+    $GLOBALS['con']->menu();
+});
+
 $f3->route('GET|POST /login', function() {
     $GLOBALS['con']->login();
 });

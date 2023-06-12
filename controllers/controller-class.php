@@ -23,6 +23,13 @@ class Controller
         echo $view->render('views/home.html');
     }
 
+    function menu()
+    {
+        // Display a view page
+        $view = new Template();
+        echo $view->render('views/menu.html');
+    }
+
     function aboutUs()
     {
         // Display a view page
