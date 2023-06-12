@@ -9,15 +9,17 @@
 
             <div class="col-6">
                 <h4>Choose Add Crust</h4>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="crust" aria-label="Default select example">
                     <repeat group="{{@crust}}" value="{{@crust}}">
                         <option value="{{@crust}}"> {{@crust}}</option>
                     </repeat>
                 </select>
             </div>
+
+
             <div class="col-6">
                 <h4>Type of Sauce</h4>
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="sauce" aria-label="Default select example">
                     <repeat group="{{@sauce}}" value="{{@sauce}}">
                         <option value="{{@sauce}}">{{@sauce}}</option>
                     </repeat>
