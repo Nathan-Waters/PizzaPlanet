@@ -104,12 +104,74 @@ class Controller
 //            //var_dump($_POST);
 //
 //
+
+
+            $this->_f3->set('crust', getCrust());
+            $this->_f3->set('sauce', getSauce());
+            $this->_f3->set('toppings', getToppings());
+            $this->_f3->set('size', getSize());
+
+
+            if (isset($_POST['crust']))
+            {
+                $crust = $_POST['crust'];
+            }
+
+            if (isset($_POST['sauce']))
+            {
+                $sauce = $_POST['sauce'];
+            }
+
+            if (isset($_POST['toppings']))
+            {
+                $toppings = $_POST['toppings'];
+            }
+
+            if (isset($_POST['size']))
+            {
+                $size = $_POST['size'];
+            }
+
+
+            //Check the crust
+            if (validSelectedCrust($crust)){
+                //assign to the custom pizza object
+            }
+            else {
+                $this->_f3->set('errors["$crust"]', 'Please Select Crust');
+            }
+
+            //Check the sauce
+            if (validSelectedCrust($sauce)){
+                //assign to the custom pizza object
+            }
+            else {
+                $this->_f3->set('errors["$sauce"]', 'Please Select Sauce');
+            }
+
+            //Check the toppings
+            if (validSelectedCrust($toppings)){
+                //assign to the custom pizza object
+            }
+            else {
+                $this->_f3->set('errors["$toppings"]', 'Please Select a Topping');
+            }
+
+            //Check the size
+            if (validSelectedCrust($size)){
+                //Assign to the custom pizza object
+            }
+            else {
+                $this->_f3->set('errors["$size"]', 'Please Select a Pizza Size');
+            }
+
+
+            if (empty( $this->_f3->get('errors'))) {
+                //Might want to add "pizza order placed" if not errors
+            }
 //        }
 
-        $this->_f3->set('crust', getCrust());
-        $this->_f3->set('sauce', getSauce());
-        $this->_f3->set('toppings', getToppings());
-        $this->_f3->set('size', getSize());
+
         // Display a view page
         $view = new Template();
         echo $view->render('views/orderPage.html');
