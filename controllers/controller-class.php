@@ -132,7 +132,7 @@ class Controller
                 $size = $_POST['size'];
             }
 
-
+/*
             //Check the crust
             if (validSelectedCrust($crust)){
                 //assign to the custom pizza object
@@ -164,7 +164,7 @@ class Controller
             else {
                 $this->_f3->set('errors["$size"]', 'Please Select a Pizza Size');
             }
-
+*/
 
             if (empty( $this->_f3->get('errors'))) {
                 //Might want to add "pizza order placed" if not errors
