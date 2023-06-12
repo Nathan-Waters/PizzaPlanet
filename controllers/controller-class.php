@@ -106,10 +106,10 @@ class Controller
 //
 
 
-            $this->_f3->set('crust', getCrust());
-            $this->_f3->set('sauce', getSauce());
-            $this->_f3->set('toppings', getToppings());
-            $this->_f3->set('size', getSize());
+            $this->_f3->set('crust', DataLayer::getCrust());
+            $this->_f3->set('sauce', DataLayer::getSauce());
+            $this->_f3->set('toppings', DataLayer::getToppings());
+            $this->_f3->set('size', DataLayer::getSize());
 
 
             if (isset($_POST['crust']))
@@ -142,7 +142,7 @@ class Controller
             }
 
             //Check the sauce
-            if (validSelectedCrust($sauce)){
+            if (validSelectedSauce($sauce)){
                 //assign to the custom pizza object
             }
             else {
@@ -150,7 +150,7 @@ class Controller
             }
 
             //Check the toppings
-            if (validSelectedCrust($toppings)){
+            if (validSelectedToppings($toppings)){
                 //assign to the custom pizza object
             }
             else {
@@ -158,7 +158,7 @@ class Controller
             }
 
             //Check the size
-            if (validSelectedCrust($size)){
+            if (validSelectedSize($size)){
                 //Assign to the custom pizza object
             }
             else {

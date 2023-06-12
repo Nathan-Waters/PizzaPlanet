@@ -2,11 +2,11 @@
 
 //validate crust
 function validSelectedCrust($selectedCrust){
-    $validCrust = getCrust();
+    $validCrust = DataLayer::getCrust();
 
     //Check each user toppings against array of valid toppings
-    foreach ($selectedCrust as $selectedCrust){
-        if (!in_array($selectedCrust, $validCrust)){
+    foreach ($selectedCrust as $selectedCrusts){
+        if (!in_array($selectedCrusts, $validCrust)){
             return false;
         }
     }
@@ -15,11 +15,11 @@ function validSelectedCrust($selectedCrust){
 
 //validate sauce
 function validSelectedSauce($selectedSauce){
-    $validSauce = getSauce();
+    $validSauce = DataLayer::getSauce();
 
     //Check each user toppings against array of valid toppings
-    foreach ($selectedSauce as $selectedSauce){
-        if (!in_array($selectedSauce, $validSauce)){
+    foreach ($selectedSauce as $selectedSauces){
+        if (!in_array($selectedSauces, $validSauce)){
             return false;
         }
     }
@@ -28,11 +28,11 @@ function validSelectedSauce($selectedSauce){
 
 //validate toppings
 function validSelectedToppings($selectedToppings){
-    $validToppings = getToppings();
+    $validToppings = DataLayer::getToppings();
 
     //Check each user toppings against array of valid toppings
-    foreach ($selectedToppings as $selectedToppings){
-        if (!in_array($selectedToppings, $validToppings)){
+    foreach ($selectedToppings as $selectedTopping){
+        if (!in_array($selectedTopping, $validToppings)){
             return false;
         }
     }
@@ -41,11 +41,11 @@ function validSelectedToppings($selectedToppings){
 
 //validate Size
 function validSelectedSize($selectedSize){
-    $validSize = getSize();
+    $validSize = DataLayer::getSize();
 
     //Check each user toppings against array of valid toppings
-    foreach ($selectedSize as $selectedSize){
-        if (!in_array($selectedSize, $validSize)){
+    foreach ($selectedSize as $selectedSizes){
+        if (!in_array($selectedSizes, $validSize)){
             return false;
         }
     }
