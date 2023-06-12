@@ -19,8 +19,7 @@
         $statement->execute();
     5. Process the result, if there is one
     */
-
-require_once('pdo-config.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/../pdo-config.php');
 class DataLayer
 {
     /**
