@@ -29,6 +29,15 @@ class Controller
         $view = new Template();
         echo $view->render('views/menu.html');
     }
+    function pizza()
+    {
+        // Display a view page
+
+        $items = $GLOBALS['dataLayer']->getItems("pizza");
+        $this->_f3->set('SESSION.items', $items);
+        $view = new Template();
+        echo $view->render('views/pizza.html');
+    }
 
     function aboutUs()
     {

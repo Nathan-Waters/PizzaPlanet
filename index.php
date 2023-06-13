@@ -25,8 +25,8 @@ $dataLayer = new DataLayer();
 //$newUser = new User("guest", "Tim", "Waters", "nathanwaters@gmail.com", "nathan");
 //$userID = $dataLayer->saveUser($newUser);
 //echo ("new user: $userID");
-//$x = $dataLayer->userLogin();
-//var_dump($x[3]['email']);
+//$x = $dataLayer->getItems("pizza");
+//var_dump($x);
 // Define a default route
 $f3->route('GET /', function() {
     $GLOBALS['con']->home();
@@ -57,6 +57,10 @@ $f3->route('GET|POST /order', function() {
 
 $f3->route('GET|POST /menu', function() {
     $GLOBALS['con']->menu();
+});
+
+$f3->route('GET|POST /pizza', function() {
+    $GLOBALS['con']->pizza();
 });
 
 $f3->route('GET|POST /login', function() {
