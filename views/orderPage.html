@@ -9,6 +9,11 @@
 
             <div class="col-6">
                 <h4>Choose Add Crust</h4>
+
+                <check if="{{ isset(@errors['$crust']) }}">
+                    <span class="err">{{ @errors['$crust'] }}</span>
+                </check>
+
                 <select class="form-select" name="crust" aria-label="Default select example">
                     <repeat group="{{@crust}}" value="{{@crust}}">
                         <option value="{{@crust}}"> {{@crust}}</option>
@@ -19,6 +24,11 @@
 
             <div class="col-6">
                 <h4>Type of Sauce</h4>
+
+                <check if="{{ isset(@errors['$sauce']) }}">
+                    <span class="err">{{ @errors['$sauce'] }}</span>
+                </check>
+
                 <select class="form-select" name="sauce" aria-label="Default select example">
                     <repeat group="{{@sauce}}" value="{{@sauce}}">
                         <option value="{{@sauce}}">{{@sauce}}</option>
@@ -29,6 +39,11 @@
         <br>
 
         <h4>What Toppings?</h4>
+
+        <check if="{{ isset(@errors['$toppings']) }}">
+            <span class="err">{{ @errors['$toppings'] }}</span>
+        </check>
+
         <div class="row">
             <repeat group="{{@toppings}}" value="{{@toppings}}">
                 <div class="col-3">
@@ -49,10 +64,13 @@
         <div class="row">
             <div class="col-6">
                 <h4 class="mb-4">Choose Size</h4>
-                    <repeat group="{{@size}}" value="{{@size}}">
-                        <input type="radio" id="exp" name="exp" value="{{@size}}">
-                        <label class="form-label" for="exp">{{@size}}</label>
-                    </repeat>
+                <check if="{{ isset(@errors['$size']) }}">
+                    <span class="err">{{ @errors['$size'] }}</span>
+                </check>
+                <repeat group="{{@size}}" value="{{@size}}">
+                    <input type="radio" id="size" name="size" value="{{@size}}">
+                    <label class="form-label" for="size">{{@size}}</label>
+                </repeat>
             </div>
 
             <div class="col-6">

@@ -14,7 +14,7 @@ error_reporting(E_ALL);
 // Require the autoload file
 require_once('vendor/autoload.php');
 //require_once('model/data-layer.php');
-//require_once('model/validation.php');
+require_once('model/validation.php');
 
 // Create an F3 (Fat-Free Framework) object
 $f3 = Base::instance();

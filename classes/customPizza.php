@@ -9,7 +9,7 @@ class customPizza
     private $_toppings;
     private $_size;
 
-    function __construct($size, $crust, $sauce, $toppings){
+    function __construct($size= "", $crust= "", $sauce= "", $toppings= ""){
         $this->_size = $size;
         $this->_crust = $crust;
         $this->_sauce = $sauce;

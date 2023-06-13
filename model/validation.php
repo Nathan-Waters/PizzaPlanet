@@ -2,28 +2,18 @@
 
 //validate crust
 function validSelectedCrust($selectedCrust){
-    $validCrust = DataLayer::getCrust();
-
-    //Check each user toppings against array of valid toppings
-    foreach ($selectedCrust as $selectedCrusts){
-        if (!in_array($selectedCrusts, $validCrust)){
-            return false;
+        if ($selectedCrust == "Traditional Hand Tossed" || $selectedCrust == "Thin Crust" || $selectedCrust == "Stuffed Crust"){
+            return true;
         }
-    }
-    return true;
+    return false;
 }
 
 //validate sauce
 function validSelectedSauce($selectedSauce){
-    $validSauce = DataLayer::getSauce();
-
-    //Check each user toppings against array of valid toppings
-    foreach ($selectedSauce as $selectedSauces){
-        if (!in_array($selectedSauces, $validSauce)){
-            return false;
+        if ($selectedSauce == "Classic Marinara" || $selectedSauce == "Alfredo" || $selectedSauce == "Buffalo" || $selectedSauce == "Barbecue"){
+            return true;
         }
-    }
-    return true;
+    return false;
 }
 
 //validate toppings
@@ -31,23 +21,24 @@ function validSelectedToppings($selectedToppings){
     $validToppings = DataLayer::getToppings();
 
     //Check each user toppings against array of valid toppings
+    if ($selectedToppings == null){
+        return false;
+    }
+    else{
+
     foreach ($selectedToppings as $selectedTopping){
         if (!in_array($selectedTopping, $validToppings)){
             return false;
         }
+    }
     }
     return true;
 }
 
 //validate Size
 function validSelectedSize($selectedSize){
-    $validSize = DataLayer::getSize();
-
-    //Check each user toppings against array of valid toppings
-    foreach ($selectedSize as $selectedSizes){
-        if (!in_array($selectedSizes, $validSize)){
-            return false;
+        if ($selectedSize == "9 Inch" || $selectedSize == "12 Inch" || $selectedSize == "14 Inch" ){
+            return true;
         }
-    }
-    return true;
+    return false;
 }

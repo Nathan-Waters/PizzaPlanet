@@ -149,7 +149,7 @@ class Controller
     {
 //        if($_SERVER['REQUEST_METHOD'] == "POST"){
 //
-//            //var_dump($_POST);
+            var_dump($_POST);
 //
 //
 
@@ -159,6 +159,9 @@ class Controller
             $this->_f3->set('toppings', DataLayer::getToppings());
             $this->_f3->set('size', DataLayer::getSize());
 
+
+
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
 
             if (isset($_POST['crust']))
             {
@@ -174,24 +177,32 @@ class Controller
             {
                 $toppings = $_POST['toppings'];
             }
+            else{
+                $toppings = null;
+            }
 
             if (isset($_POST['size']))
             {
                 $size = $_POST['size'];
             }
+            else{
+                $size = "";
+            }
 
-/*
+            $newPizza = new customPizza();
+
             //Check the crust
             if (validSelectedCrust($crust)){
-                //assign to the custom pizza object
+                $newPizza->setCrust($crust);
             }
             else {
                 $this->_f3->set('errors["$crust"]', 'Please Select Crust');
             }
 
+
             //Check the sauce
             if (validSelectedSauce($sauce)){
-                //assign to the custom pizza object
+                $newPizza->setSauce($sauce);
             }
             else {
                 $this->_f3->set('errors["$sauce"]', 'Please Select Sauce');
@@ -199,7 +210,7 @@ class Controller
 
             //Check the toppings
             if (validSelectedToppings($toppings)){
-                //assign to the custom pizza object
+                $newPizza->setToppings($toppings);
             }
             else {
                 $this->_f3->set('errors["$toppings"]', 'Please Select a Topping');
@@ -207,22 +218,24 @@ class Controller
 
             //Check the size
             if (validSelectedSize($size)){
-                //Assign to the custom pizza object
+                $newPizza->setSize($size);
             }
             else {
                 $this->_f3->set('errors["$size"]', 'Please Select a Pizza Size');
             }
-*/
+
 
             if (empty( $this->_f3->get('errors'))) {
-                //Might want to add "pizza order placed" if not errors
+                echo "passed";
             }
-//        }
-
+        }
 
         // Display a view page
         $view = new Template();
         echo $view->render('views/orderPage.html');
+
+
+
     }
 
 
