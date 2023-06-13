@@ -75,44 +75,36 @@ class Controller
 
     function login()
     {
-        //if someone is logged in it will grab them
+
         $login = $this->_f3->get('SESSION.login');
-//        $newUser = $this->_f3->get('SESSION.newUser');
 
-//        $this->_f3->set('SESSION.newUser', $newUser);
-//        if(isset($_SESSION['newUser'])){
-//            $newUser = $this->_f3->get('SESSION.newUser');
-//        }
-//        if($_SERVER['REQUEST_METHOD'] == "POST"){
-//            $newUser = $_POST['newUser'];
-//            $this->_f3->set('SESSION.newUser', $newUser);
-//            var_dump($newUser);
-//        }
-        var_dump($_POST);
-
-        //TODO: get from sql and evaluate account power
+        //Checks to see if an account is logged in already
         if(isset($login)){
-            if($_SESSION['login']=='admin'){
+            if($login->getPower()=='admin'){
                 $this->_f3->reroute('admin');
             }
-            if($_SESSION['login']=='guest'){
-
+            if($login->getPower()=='guest'){
                 $this->_f3->reroute('guest');
             }
         }
 
-        //after login typed, send them to the correct page
-        //TODO: get from sql and evaluate account power
+        //verifies user has an account
         if($_SERVER['REQUEST_METHOD'] == "POST"){
-            $login = $_POST['login'];
-            $this->_f3->set('SESSION.login', $login);
-            if($_SESSION['login']=='admin'){
+            //call all users
+            $user = $GLOBALS['dataLayer']->userLogin();
 
-                $this->_f3->reroute('admin');
-            }
-            if($_SESSION['login']=='guest'){
+            for ($i = 0; $i < sizeof($user) ; $i++){
+                if($_POST['userEmail']==$user[$i]['email'] && $_POST['userPass'] == $user[$i]['password'] ){
+                    $login = new User($user[$i]['powers'], $user[$i]['first_name'], $user[$i]['last_name'], $user[$i]['email'], $user[$i]['password']);
+                    $this->_f3->set('SESSION.login', $login);
+                    echo ('<br>');
+                    if($user[$i]['powers']=="admin"){
+                        $this->_f3->reroute('admin');
+                    } else {
+                        $this->_f3->reroute('guest');
+                    }
 
-                $this->_f3->reroute('guest');
+                }
             }
         }
 
@@ -147,19 +139,11 @@ class Controller
 
     function order()
     {
-//        if($_SERVER['REQUEST_METHOD'] == "POST"){
-//
-            var_dump($_POST);
-//
-//
-
 
             $this->_f3->set('crust', DataLayer::getCrust());
             $this->_f3->set('sauce', DataLayer::getSauce());
             $this->_f3->set('toppings', DataLayer::getToppings());
             $this->_f3->set('size', DataLayer::getSize());
-
-
 
         if($_SERVER['REQUEST_METHOD'] == "POST") {
 
@@ -233,9 +217,6 @@ class Controller
         // Display a view page
         $view = new Template();
         echo $view->render('views/orderPage.html');
-
-
-
     }
 
 

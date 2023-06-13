@@ -25,6 +25,8 @@ $dataLayer = new DataLayer();
 //$newUser = new User("guest", "Tim", "Waters", "nathanwaters@gmail.com", "nathan");
 //$userID = $dataLayer->saveUser($newUser);
 //echo ("new user: $userID");
+//$x = $dataLayer->userLogin();
+//var_dump($x[3]['email']);
 // Define a default route
 $f3->route('GET /', function() {
     $GLOBALS['con']->home();

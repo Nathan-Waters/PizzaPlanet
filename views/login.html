@@ -8,20 +8,13 @@
             <form action="#" method="post">
                 <div class="mb-3">
                     <label for="userEmail" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp">
+                    <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" name="userEmail">
                 </div>
                 <div class="mb-3">
                     <label for="userPass" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="userPass">
+                    <input type="password" class="form-control" id="userPass" name="userPass">
                 </div>
-                <div class="mb-3">
-                    <h4 class="mb-4">admin or guest</h4>
-                        <input type="radio" id="admin" name="login" value="admin">
-                        <label class="form-label" for="admin">admin</label>
 
-                        <input type="radio" id="guest" name="login" value="guest">
-                        <label class="form-label" for="guest">guest</label>
-                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
             <button type="button" class="btn btn-secondary">
