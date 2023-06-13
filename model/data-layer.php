@@ -41,6 +41,31 @@ class DataLayer
         }
     }
 
+    /** saveUser saves a newly created user
+     * @param $user user object
+     * @return null
+     */
+    function saveUser(user $user)
+    {
+//    1. Define the query(test first!)
+        $sql = "INSERT INTO users(powers, first_name, last_name, email, password)
+                VALUES (:powers,:first_name,:last_name,:email,:password)";
+//    2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+//    3. Bind the parameters
+
+        $statement->bindValue(':powers', $user->getPower());
+        $statement->bindValue(':first_name', $user->getFirstName());
+        $statement->bindValue(':last_name', $user->getLastName());
+        $statement->bindValue(':email', $user->getEmail());
+        $statement->bindValue(':password', $user->getPassword());
+
+//    4. Execute
+        $statement->execute();
+//    5. Process the result, if there is one
+//        $id = $this->_dbh->lastInsertId();
+    }
+
     static function getCrust(){
         $crust = array("Traditional Hand Tossed", "Thin Crust", "Stuffed Crust");
         return $crust;

@@ -22,7 +22,9 @@ $con = new Controller($f3);
 
 
 $dataLayer = new DataLayer();
-
+//$newUser = new User("guest", "Tim", "Waters", "nathanwaters@gmail.com", "nathan");
+//$userID = $dataLayer->saveUser($newUser);
+//echo ("new user: $userID");
 // Define a default route
 $f3->route('GET /', function() {
     $GLOBALS['con']->home();
@@ -57,6 +59,10 @@ $f3->route('GET|POST /menu', function() {
 
 $f3->route('GET|POST /login', function() {
     $GLOBALS['con']->login();
+});
+
+$f3->route('GET|POST /signUp', function() {
+    $GLOBALS['con']->signUp();
 });
 
 // Run Fat-Free

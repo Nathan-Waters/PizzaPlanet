@@ -37,10 +37,58 @@ class Controller
         echo $view->render('views/about.html');
     }
 
+    function signUp()
+    {
+
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+            $newUser = new User();
+
+            $newUser->setPower("guest");
+
+            if(isset($_POST['firstName'])){
+                $firstName = $_POST['firstName'];
+                $newUser->setFirstName($firstName);
+            }
+            if(isset($_POST['lastName'])){
+                $lastName = $_POST['lastName'];
+                $newUser->setLastName($lastName);
+            }
+            if(isset($_POST['newEmail'])){
+                $email = $_POST['newEmail'];
+                $newUser->setEmail($email);
+            }
+            if(isset($_POST['newPassword'])){
+                $newPassword = $_POST['newPassword'];
+                $newUser->setPassword($newPassword);
+            }
+
+            $userID = $GLOBALS['dataLayer']->saveUser($newUser);
+            echo ("new user: $userID");
+            var_dump($newUser);
+            $this->_f3->reroute('login');
+        }
+        // Display a view page
+        $view = new Template();
+        echo $view->render('views/signUp.html');
+    }
+
     function login()
     {
-        //if someone is logged in it will grab the them
+        //if someone is logged in it will grab them
         $login = $this->_f3->get('SESSION.login');
+//        $newUser = $this->_f3->get('SESSION.newUser');
+
+//        $this->_f3->set('SESSION.newUser', $newUser);
+//        if(isset($_SESSION['newUser'])){
+//            $newUser = $this->_f3->get('SESSION.newUser');
+//        }
+//        if($_SERVER['REQUEST_METHOD'] == "POST"){
+//            $newUser = $_POST['newUser'];
+//            $this->_f3->set('SESSION.newUser', $newUser);
+//            var_dump($newUser);
+//        }
+        var_dump($_POST);
 
         //TODO: get from sql and evaluate account power
         if(isset($login)){
