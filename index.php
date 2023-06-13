@@ -63,6 +63,14 @@ $f3->route('GET|POST /pizza', function() {
     $GLOBALS['con']->pizza();
 });
 
+$f3->route('GET|POST /sides', function() {
+    $GLOBALS['con']->sides();
+});
+
+$f3->route('GET|POST /sodas', function() {
+    $GLOBALS['con']->sodas();
+});
+
 $f3->route('GET|POST /login', function() {
     $GLOBALS['con']->login();
 });

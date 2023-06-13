@@ -39,6 +39,26 @@ class Controller
         echo $view->render('views/pizza.html');
     }
 
+    function sides()
+    {
+        // Display a view page
+
+        $items = $GLOBALS['dataLayer']->getItems("sides");
+        $this->_f3->set('SESSION.items', $items);
+        $view = new Template();
+        echo $view->render('views/sides.html');
+    }
+
+    function sodas()
+    {
+        // Display a view page
+
+        $items = $GLOBALS['dataLayer']->getItems("sodas");
+        $this->_f3->set('SESSION.items', $items);
+        $view = new Template();
+        echo $view->render('views/sodas.html');
+    }
+
     function aboutUs()
     {
         // Display a view page
