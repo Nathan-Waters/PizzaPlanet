@@ -42,3 +42,17 @@ function validSelectedSize($selectedSize){
         }
     return false;
 }
+
+//validate Email
+function validEmail($email){
+
+    return (!preg_match("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^", $email))
+        ? FALSE : TRUE;
+
+}
+
+//validate Names
+function validName($name){
+    $name = trim($name);
+    return (strlen($name) >= 1 && !is_numeric($name));
+}
