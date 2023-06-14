@@ -6,7 +6,7 @@ body {
 }
 
 .accent {
-    background-color: rgba(233, 84, 78, 0.95);
+    background-color: rgb(196,16,46);
 }
 
 .card {
@@ -32,7 +32,7 @@ a#shoppingCart.nav-link{
 
 nav.navbar.navbar-expand-lg.bg-body-tertiary {
     border-radius: 25px;
-    background-color: rgba(233, 84, 78, 0.95) !important;
+    background-color: rgb(196,16,46) !important;
 }
 
 /*End of the section of code that is responsible for the header styles*/

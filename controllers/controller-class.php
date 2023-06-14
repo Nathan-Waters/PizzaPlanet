@@ -31,10 +31,24 @@ class Controller
     }
     function pizza()
     {
-        // Display a view page
+
+        $orderArray = $this->_f3->get('SESSION.currentOrder');
+        if (!$orderArray) {
+            $orderArray = array();
+        }
 
         $items = $GLOBALS['dataLayer']->getItems("pizza");
         $this->_f3->set('SESSION.items', $items);
+
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $newItem =  $_POST['id'][0];
+            array_push($orderArray, $newItem);
+            $this->_f3->set('SESSION.currentOrder', $orderArray);
+            var_dump($orderArray);
+
+        }
+//        echo "things";
+
         $view = new Template();
         echo $view->render('views/pizza.html');
     }
@@ -42,19 +56,46 @@ class Controller
     function sides()
     {
         // Display a view page
+        $orderArray = $this->_f3->get('SESSION.currentOrder');
+        if (!$orderArray) {
+            $orderArray = array();
+        }
+
 
         $items = $GLOBALS['dataLayer']->getItems("sides");
         $this->_f3->set('SESSION.items', $items);
+
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $newItem =  $_POST['id'][0];
+            array_push($orderArray, $newItem);
+            $this->_f3->set('SESSION.currentOrder', $orderArray);
+            var_dump($orderArray);
+
+        }
+
         $view = new Template();
         echo $view->render('views/sides.html');
     }
 
     function sodas()
     {
+        $orderArray = $this->_f3->get('SESSION.currentOrder');
+        if (!$orderArray) {
+            $orderArray = array();
+        }
         // Display a view page
 
         $items = $GLOBALS['dataLayer']->getItems("sodas");
         $this->_f3->set('SESSION.items', $items);
+
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $newItem =  $_POST['id'][0];
+            array_push($orderArray, $newItem);
+            $this->_f3->set('SESSION.currentOrder', $orderArray);
+            var_dump($orderArray);
+
+        }
+
         $view = new Template();
         echo $view->render('views/sodas.html');
     }
