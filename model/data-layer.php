@@ -83,6 +83,23 @@ class DataLayer
 
     }
 
+    function getOrderItems($id)
+    {
+        //PDO - Using Prepared Statements
+
+//    1. Define the query(test first!)
+        $sql = "SELECT * FROM `items` WHERE id = '$id'";
+//    2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+//    3. Bind the parameters
+//        $statement->bindParam(param_name, value, type);
+//    4. Execute
+        $statement->execute();
+//    5. Process the result, if there is one
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
     function userLogin()
     {
 

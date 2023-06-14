@@ -289,5 +289,33 @@ class Controller
         echo $view->render('views/orderPage.html');
     }
 
+    function cart()
+    {
+        $orderArray = $this->_f3->get('SESSION.currentOrder');
+//        var_dump($orderArray);
+
+//        $finishedOrder = array();
+        if(isset($orderArray)){
+
+            for ($i = 0; $i < sizeof($orderArray); $i++){
+                $item = $GLOBALS['dataLayer']->getOrderItems($orderArray[$i]);
+
+//                $id = $item[0]['id'];
+//                $this->_f3->
+//                $type = $item[0]['type'];
+//                $name = $item[0]['name'];
+//                $desc = $item[0]['description'];
+                $thing = $this->_f3->get('SESSION.currentOrder');
+                var_dump($thing);
+
+            }
+
+        }
+
+        // Display a view page
+        $view = new Template();
+        echo $view->render('views/cart.html');
+    }
+
 
 }

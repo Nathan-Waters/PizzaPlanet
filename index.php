@@ -79,6 +79,10 @@ $f3->route('GET|POST /signUp', function() {
     $GLOBALS['con']->signUp();
 });
 
+$f3->route('GET|POST /cart', function() {
+    $GLOBALS['con']->cart();
+});
+
 // Run Fat-Free
 $f3->run();
 

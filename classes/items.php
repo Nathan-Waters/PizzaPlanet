@@ -74,15 +74,15 @@ class Items
      */
     public function getDesciption()
     {
-        return $this->_desciption;
+        return $this->_description;
     }
 
     /**
      * @param mixed $desciption
      */
-    public function setDesciption($desciption): void
+    public function setDesciption($description): void
     {
-        $this->_desciption = $desciption;
+        $this->_description= $description;
     }
 
 }
