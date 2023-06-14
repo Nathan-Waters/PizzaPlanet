@@ -296,7 +296,11 @@ class Controller
 
 //        $finishedOrder = array();
         if(isset($orderArray)){
+            echo "Order array: ";
+            var_dump($orderArray);
 
+            echo "<br><br>";
+            echo "Each order listed here: ";
             for ($i = 0; $i < sizeof($orderArray); $i++){
                 $item = $GLOBALS['dataLayer']->getOrderItems($orderArray[$i]);
 
@@ -306,8 +310,7 @@ class Controller
 //                $name = $item[0]['name'];
 //                $desc = $item[0]['description'];
                 $thing = $this->_f3->get('SESSION.currentOrder');
-                var_dump($thing);
-
+                var_dump($_SESSION['currentOrder']);
             }
 
         }

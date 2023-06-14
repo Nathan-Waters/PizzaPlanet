@@ -80,6 +80,23 @@ class customPizza
         $this->_size = $size;
     }
 
+    public function margherita()
+    {
+        $this->_sauce = "red";
+        $this->_toppings = "fresh mozzarella cheese, tomatoes, and basil leaves";
+    }
 
+    public function pepperoni()
+    {
+        $this->_sauce = "red";
+        $this->_toppings = "melted cheese, pepperoni";
+    }
 
+    public function bbqChicken() {
+        $this->_sauce = "red";
+        $this->_toppings = "grilled chicken, barbecue sauce, red onions";
+    }
+    // cheese variable?
+    // what kind of crust do we want for these pizzas?
+    // toppings array or string?
 }
