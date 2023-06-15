@@ -223,7 +223,7 @@ class Controller
             }
 
 //            $newItem = new Items("1", $_POST['type'], $_POST['name'], $_POST['desc']);
-//            $GLOBALS['dataLayer']->saveItem($newItem);
+            $GLOBALS['dataLayer']->saveItem( $_POST['name'],$_POST['type'], $_POST['desc']);
         }
 
 

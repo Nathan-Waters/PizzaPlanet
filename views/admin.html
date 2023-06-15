@@ -2,28 +2,34 @@
 <body>
 <include href="views/includes/nav.html"></include>
 <section class="container">
-<!--    <div class="row">-->
-<!--        <h3>Add new item</h3>-->
-<!--        <form action="#" method="post">-->
-<!--            <h5>Select Item Type</h5>-->
-<!--            <input type="radio" id="pizza" name="type" value="pizza">-->
-<!--            <label for="pizza">Pizza</label><br>-->
-<!--            <input type="radio" id="sodas" name="type" value="sodas">-->
-<!--            <label for="sodas">Soda</label><br>-->
-<!--            <input type="radio" id="sides" name="type" value="sides">-->
-<!--            <label for="sides">Side</label>-->
+    <div class="row">
+        <h3>Add new item</h3>
+        <form action="#" method="post">
+            <div class="col-4">
+                <h5>Select Item Type</h5>
+                <input type="radio" id="pizza" name="type" value="pizza">
+                <label for="pizza">Pizza</label><br>
+                <input type="radio" id="sodas" name="type" value="sodas">
+                <label for="sodas">Soda</label><br>
+                <input type="radio" id="sides" name="type" value="sides">
+                <label for="sides">Side</label>
+            </div>
 
-<!--            <h5>Enter Item Name</h5>-->
-<!--            <label for="name">Item Name: </label><br>-->
-<!--            <input type="text" id="name" name="name"><br>-->
+            <div class="col-4">
+                <h5>Enter Item Name</h5>
+                <label for="name">Item Name: </label><br>
+                <input type="text" id="name" name="name"><br>
+            </div>
 
-<!--            <h5>Enter Item Description</h5>-->
-<!--            <label for="desc">Item Description: </label><br>-->
-<!--            <input type="text" id="desc" name="desc"><br>-->
+            <div class="col-4">
+                <h5>Enter Item Description</h5>
+                <label for="desc">Item Description: </label><br>
+                <input type="text" id="desc" name="desc"><br>
+            </div>
 
-<!--            <button class="btn btn-primary m-4 form-control" type="submit">Create Item</button>-->
-<!--        </form>-->
-<!--    </div>-->
+            <button class="btn btn-primary m-4 form-control" type="submit">Create Item</button>
+        </form>
+    </div>
 
     <div class="row">
         <repeat group="{{ @SESSION.orders }}" value="{{ @SESSION.orders }}">

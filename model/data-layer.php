@@ -66,7 +66,7 @@ class DataLayer
 //        $id = $this->_dbh->lastInsertId();
     }
 
-    function saveItem(Items $item)
+    function saveItem($type, $name, $desc)
     {
 //    1. Define the query(test first!)
         $sql = "INSERT INTO items(type, name, description)
@@ -75,9 +75,9 @@ class DataLayer
         $statement = $this->_dbh->prepare($sql);
 //    3. Bind the parameters
 
-        $statement->bindValue(':type', $item->getType());
-        $statement->bindValue(':name', $item->getName());
-        $statement->bindValue(':description', $item->getDescription());
+        $statement->bindValue(':type', $type);
+        $statement->bindValue(':name', $name);
+        $statement->bindValue(':description', $desc);
 
 //    4. Execute
         $statement->execute();
