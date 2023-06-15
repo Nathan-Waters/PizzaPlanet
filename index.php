@@ -33,7 +33,7 @@ $f3->route('GET /', function() {
 });
 
 // non default that routes to home page
-$f3->route('GET /home', function() {
+$f3->route('GET|POST /home', function() {
     $GLOBALS['con']->home();
 });
 
