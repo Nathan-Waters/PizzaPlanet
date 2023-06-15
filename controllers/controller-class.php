@@ -44,7 +44,7 @@ class Controller
             $newItem =  $_POST['id'][0];
             array_push($orderArray, $newItem);
             $this->_f3->set('SESSION.currentOrder', $orderArray);
-            var_dump($orderArray);
+            //var_dump($orderArray);
 
         }
 //        echo "things";
@@ -70,7 +70,7 @@ class Controller
             array_push($orderArray, $newItem);
             $this->_f3->set('SESSION.currentOrder', $orderArray);
             if (isset($orderArray)) {
-                var_dump($orderArray);
+                //var_dump($orderArray);
             }
 
         }
@@ -94,8 +94,7 @@ class Controller
             $newItem =  $_POST['id'][0];
             array_push($orderArray, $newItem);
             $this->_f3->set('SESSION.currentOrder', $orderArray);
-            var_dump($orderArray);
-
+            //var_dump($orderArray);
         }
 
         $view = new Template();
