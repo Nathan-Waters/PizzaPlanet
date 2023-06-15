@@ -121,6 +121,8 @@ class DataLayer
 
     }
 
+
+
     function getPastOrders($userID)
     {
         //PDO - Using Prepared Statements
@@ -143,6 +145,23 @@ class DataLayer
 
 //    1. Define the query(test first!)
         $sql = "SELECT * FROM `items` WHERE type = '$type'";
+//    2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+//    3. Bind the parameters
+//        $statement->bindParam(param_name, value, type);
+//    4. Execute
+        $statement->execute();
+//    5. Process the result, if there is one
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    function getThreeItems($type)
+    {
+        //PDO - Using Prepared Statements
+
+//    1. Define the query(test first!)
+        $sql = "SELECT * FROM `items` WHERE type = '$type' LIMIT 3";
 //    2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 //    3. Bind the parameters

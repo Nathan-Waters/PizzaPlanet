@@ -18,6 +18,24 @@ class Controller
 
     function home()
     {
+        $orderArray = $this->_f3->get('SESSION.currentOrder');
+        if (!$orderArray) {
+            $orderArray = array();
+        }
+
+        $pizzas = $GLOBALS['dataLayer']->getThreeItems("pizza");
+        $this->_f3->set('SESSION.pizzas', $pizzas);
+        $sides = $GLOBALS['dataLayer']->getThreeItems("sides");
+        $this->_f3->set('SESSION.sides', $sides);
+        $sodas = $GLOBALS['dataLayer']->getThreeItems("sodas");
+        $this->_f3->set('SESSION.sodas', $sodas);
+
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $newItem =  $_POST['id'][0];
+            array_push($orderArray, $newItem);
+            $this->_f3->set('SESSION.currentOrder', $orderArray);
+//            var_dump($orderArray);
+        }
         // Display a view page
         $view = new Template();
         echo $view->render('views/home.html');
@@ -44,10 +62,8 @@ class Controller
             $newItem =  $_POST['id'][0];
             array_push($orderArray, $newItem);
             $this->_f3->set('SESSION.currentOrder', $orderArray);
-            var_dump($orderArray);
 
         }
-//        echo "things";
 
         $view = new Template();
         echo $view->render('views/pizza.html');
@@ -69,9 +85,6 @@ class Controller
             $newItem =  $_POST['id'][0];
             array_push($orderArray, $newItem);
             $this->_f3->set('SESSION.currentOrder', $orderArray);
-            if (isset($orderArray)) {
-                var_dump($orderArray);
-            }
 
         }
 
@@ -94,7 +107,6 @@ class Controller
             $newItem =  $_POST['id'][0];
             array_push($orderArray, $newItem);
             $this->_f3->set('SESSION.currentOrder', $orderArray);
-            var_dump($orderArray);
 
         }
 
@@ -136,8 +148,6 @@ class Controller
             }
 
             $userID = $GLOBALS['dataLayer']->saveUser($newUser);
-            echo ("new user: $userID");
-            var_dump($newUser);
             $this->_f3->reroute('login');
         }
         // Display a view page
@@ -147,13 +157,7 @@ class Controller
 
     function login()
     {
-
-
-
         $login = $this->_f3->get('SESSION.login');
-
-//        var_dump($_POST);
-
 
         //Checks to see if an account is logged in already
         if(isset($login)){
@@ -173,17 +177,14 @@ class Controller
                 $userEmail = $_POST['userEmail'];
             }
 
-
             //call all users
             $user = $GLOBALS['dataLayer']->userLogin();
-
-//            var_dump($user);
 
             //Val email and password
             if (validEmail($userEmail)){
                 for ($i = 0; $i < sizeof($user) ; $i++){
                     if($_POST['userEmail']==$user[$i]['email'] && $_POST['userPass'] == $user[$i]['password'] ){
-//                        var_dump($user[$i]['user_id']);
+
                         $login = new User($user[$i]['powers'], $user[$i]['first_name'], $user[$i]['last_name'], $user[$i]['email'], $user[$i]['password'], $user[$i]['user_id']);
 
                         $this->_f3->set('SESSION.login', $login);
@@ -240,7 +241,6 @@ class Controller
                 $this->_f3->set('SESSION.orders2', $orders);
             }
             $things = $this->_f3->get('SESSION.orders');
-            var_dump($splitOrders[0]);
         }
 
         // Display a view page
@@ -278,7 +278,6 @@ class Controller
                 $this->_f3->set('SESSION.orders2', $orders);
             }
             $things = $this->_f3->get('SESSION.orders');
-            var_dump($splitOrders[0]);
         }
 
         // Display a view page
@@ -353,7 +352,7 @@ class Controller
 
 
             if (empty( $this->_f3->get('errors'))) {
-//                echo "passed";
+
                 $customArray = array();
 
                 $item = $GLOBALS['dataLayer']->saveCustom($newPizza->getCrust(),$newPizza->getSauce(), $newPizza->getToppings());
@@ -365,8 +364,6 @@ class Controller
                 }
                 array_push($orderArray, $newestPizza);
                 $this->_f3->set('SESSION.currentOrder', $orderArray);
-//                array_push($finishedOrder, $newObject);
-                var_dump($orderArray);
             }
         }
 
@@ -408,7 +405,7 @@ class Controller
         }
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $item = $GLOBALS['dataLayer']->saveOrder($currentUser->getUserID(), $orderNums, $total *1.08);
-            var_dump($item);
+
             $this->_f3->set('SESSION.order', null);
             $this->_f3->set('SESSION.currentOrder', null);
             $total = 0.0;

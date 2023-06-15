@@ -5,50 +5,59 @@
 
         <h2>Select From Our Pizzas!</h2>
         <div class="row">
-            <loop from="{{ @i=0 }}" to="{{ @i < 4 }}" step="{{ @i++ }}">
-                <div class="col-sm-6 col-md-3">
+            <repeat group="{{ @SESSION.pizzas }}" value="{{ @SESSION.pizzas }}">
+                <div class="col-sm-6 col-md-4">
                     <div class="card">
                         <img src="images/defaultPizza.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Pizza {{@i + 1}}</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary order-button">Add to Cart</a>
+                            <h5 class="card-title">{{ @SESSION.pizzas['name'] }}</h5>
+                            <p class="card-text">{{ @SESSION.pizzas['description'] }}</p>
+                            <form action="#" method="post">
+                                <input type="hidden" name="id[]" value="{{@SESSION.pizzas['id']}}">
+                                <button type="submit" class="btn btn-primary order-button">Buy that!</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </loop>
+            </repeat>
         </div>
 
         <h2>Select From Our Sodas!</h2>
         <div class="row">
-            <loop from="{{ @i=0 }}" to="{{ @i < 3 }}" step="{{ @i++ }}">
+            <repeat group="{{ @SESSION.sodas }}" value="{{ @SESSION.sodas }}">
                 <div class="col-sm-6 col-md-4">
                     <div class="card">
                         <img src="images/defaultSoda.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Soda {{@i + 1}}</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary order-button">Add to Cart</a>
+                            <h5 class="card-title">{{ @SESSION.sodas['name'] }}</h5>
+                            <p class="card-text">{{ @SESSION.sodas['description'] }}</p>
+                            <form action="#" method="post">
+                                <input type="hidden" name="id[]" value="{{@SESSION.sodas['id']}}">
+                                <button type="submit" class="btn btn-primary order-button">Buy that!</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </loop>
+            </repeat>
         </div>
 
         <h2>Select From Our Sides!</h2>
         <div class="row">
-            <loop from="{{ @i=0 }}" to="{{ @i < 6 }}" step="{{ @i++ }}">
+            <repeat group="{{ @SESSION.sides }}" value="{{ @SESSION.sides }}">
                 <div class="col-sm-6 col-md-4">
                     <div class="card">
                         <img src="images/wings.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Wings {{@i + 1}}</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary order-button">Add to Cart</a>
+                            <h5 class="card-title">{{ @SESSION.sides['name'] }}</h5>
+                            <p class="card-text">{{ @SESSION.sides['description'] }}</p>
+                            <form action="#" method="post">
+                                <input type="hidden" name="id[]" value="{{@SESSION.sides['id']}}">
+                                <button type="submit" class="btn btn-primary order-button">Buy that!</button>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </loop>
+            </repeat>
         </div>
     </section>
 
