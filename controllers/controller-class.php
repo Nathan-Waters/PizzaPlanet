@@ -147,9 +147,13 @@ class Controller
 
     function login()
     {
+
+
+
         $login = $this->_f3->get('SESSION.login');
 
 //        var_dump($_POST);
+
 
         //Checks to see if an account is logged in already
         if(isset($login)){
@@ -162,7 +166,7 @@ class Controller
         }
 
         //verifies user has an account
-        if($_SERVER['REQUEST_METHOD'] == "POST") {
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
 
             if (isset($_POST['userEmail']))
             {
@@ -209,34 +213,34 @@ class Controller
     function admin()
     {
         $thing = $this->_f3->get('SESSION.login');
-//        var_dump($thing);
-//        checking user based off global variable
+
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $this->_f3->set('SESSION.login', null);
+            $this->_f3->set('SESSION.orders', null);
             $this->_f3->reroute('login');
         }
 
         $user = $this->_f3->get('SESSION.login');
         $pastOrders = $GLOBALS['dataLayer']->getPastOrders($user->getUserID());
         if(isset($pastOrders)){
-
-        $Orders = array();
+        $orders2 = array();
+        $orders = array();
             for ($i = 0; $i<sizeof($pastOrders); $i++){
                 $orderItems = $pastOrders[$i]['order_items'];
                 $splitOrders = explode(' ', $orderItems);
+                for ($j = 1; $j < sizeof($splitOrders); $j++){
 
-//                for ($j = 0; $j<sizeof($orderItems); $j++){
-//                    $item = $GLOBALS['dataLayer']->getOrderItems($splitOrders[$j]);
-//                    var_dump($item);
-//                }
-                $item = $GLOBALS['dataLayer']->getOrderItems($splitOrders[1]);
-                $newObject = new Items("1", $item[0]['type'], $item[0]['name'], $item[0]['description']);
-                array_push($finishedOrder, $newObject);
-                $this->_f3->set('SESSION.order', $finishedOrder);
-
+                    $item = $GLOBALS['dataLayer']->getOrderItems($splitOrders[$j]);
+                    $newObject = new Items($item[0]['id'], $item[0]['type'], $item[0]['name'], $item[0]['description']);
+                    array_push($orders, $newObject);
+                    $this->_f3->set('SESSION.orders', $orders);
+                }
+                $things = $this->_f3->get('SESSION.orders');
+                array_push($orders2, $things);
+                $this->_f3->set('SESSION.orders2', $orders);
             }
-            //var_dump($item[0]['id']);
-//            var_dump($pastOrders[1]['order_items']);
+            $things = $this->_f3->get('SESSION.orders');
+            var_dump($splitOrders[0]);
         }
 
         // Display a view page
@@ -250,26 +254,32 @@ class Controller
 //        $this->_f3->get('SESSION.login');
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $this->_f3->set('SESSION.login', null);
+            $this->_f3->set('SESSION.orders', null);
             $this->_f3->reroute('login');
         }
 
-//        $user = $this->_f3->get('SESSION.login');
-//        $pastOrders = $GLOBALS['dataLayer']->getPastOrders($user->getUserID());
-//        if(isset($pastOrders)){
-//
-//
-//            for ($i = 0; $i<sizeof($pastOrders); $i++){
-//                $orderItems = $pastOrders[$i]['order_items'];
-//                $splitOrders = explode(' ', $orderItems);
-//
-////                for ($j=0; $j<sizeof())
-//                $item = $GLOBALS['dataLayer']->getOrderItems($splitOrders[0]);
-//
-//                var_dump($item);
-//            }
-//
-////            var_dump($pastOrders[1]['order_items']);
-//        }
+        $user = $this->_f3->get('SESSION.login');
+        $pastOrders = $GLOBALS['dataLayer']->getPastOrders($user->getUserID());
+        if(isset($pastOrders)){
+            $orders2 = array();
+            $orders = array();
+            for ($i = 0; $i<sizeof($pastOrders); $i++){
+                $orderItems = $pastOrders[$i]['order_items'];
+                $splitOrders = explode(' ', $orderItems);
+                for ($j = 1; $j < sizeof($splitOrders); $j++){
+
+                    $item = $GLOBALS['dataLayer']->getOrderItems($splitOrders[$j]);
+                    $newObject = new Items($item[0]['id'], $item[0]['type'], $item[0]['name'], $item[0]['description']);
+                    array_push($orders, $newObject);
+                    $this->_f3->set('SESSION.orders', $orders);
+                }
+                $things = $this->_f3->get('SESSION.orders');
+                array_push($orders2, $things);
+                $this->_f3->set('SESSION.orders2', $orders);
+            }
+            $things = $this->_f3->get('SESSION.orders');
+            var_dump($splitOrders[0]);
+        }
 
         // Display a view page
         $view = new Template();
@@ -278,6 +288,7 @@ class Controller
 
     function order()
     {
+
             $this->_f3->set('crust', DataLayer::getCrust());
             $this->_f3->set('sauce', DataLayer::getSauce());
             $this->_f3->set('toppings', DataLayer::getToppings());
@@ -404,4 +415,6 @@ class Controller
         $view = new Template();
         echo $view->render('views/cart.html');
     }
+
+
 }
