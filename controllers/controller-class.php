@@ -389,7 +389,15 @@ class Controller
                 $orderNums .= " " . $orderArray[$i];
                 $item = $GLOBALS['dataLayer']->getOrderItems($orderArray[$i]);
 
-                $newObject = new Items("1", $item[0]['type'], $item[0]['name'], $item[0]['description']);
+                if(intval($orderArray[$i])>=1000){
+
+                    $newObject = new Items("1", 'pizza', "Custom Pizza!", "lots of toppings");
+
+
+                } else {
+                    $newObject = new Items("1", $item[0]['type'], $item[0]['name'], $item[0]['description']);
+
+                }
 
                 if($item[0]['type'] == "pizza"){
                     $total += 12.99;
