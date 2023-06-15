@@ -146,7 +146,12 @@ class Controller
     function login()
     {
 
+
+
         $login = $this->_f3->get('SESSION.login');
+
+//        var_dump($_POST);
+
 
         //Checks to see if an account is logged in already
         if(isset($login)){
@@ -160,21 +165,38 @@ class Controller
 
         //verifies user has an account
         if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+            if (isset($_POST['userEmail']))
+            {
+                $userEmail = $_POST['userEmail'];
+            }
+
+
             //call all users
             $user = $GLOBALS['dataLayer']->userLogin();
 
-            for ($i = 0; $i < sizeof($user) ; $i++){
-                if($_POST['userEmail']==$user[$i]['email'] && $_POST['userPass'] == $user[$i]['password'] ){
-                    $login = new User($user[$i]['powers'], $user[$i]['first_name'], $user[$i]['last_name'], $user[$i]['email'], $user[$i]['password']);
-                    $this->_f3->set('SESSION.login', $login);
-                    echo ('<br>');
-                    if($user[$i]['powers']=="admin"){
-                        $this->_f3->reroute('admin');
-                    } else {
-                        $this->_f3->reroute('guest');
-                    }
 
+            //Val email and password
+            if (validEmail($userEmail)){
+                for ($i = 0; $i < sizeof($user) ; $i++){
+                    if($_POST['userEmail']==$user[$i]['email'] && $_POST['userPass'] == $user[$i]['password'] ){
+                        $login = new User($user[$i]['powers'], $user[$i]['first_name'], $user[$i]['last_name'], $user[$i]['email'], $user[$i]['password']);
+                        $this->_f3->set('SESSION.login', $login);
+                        echo ('<br>');
+                        if($user[$i]['powers']=="admin"){
+                            $this->_f3->reroute('admin');
+                        } else {
+                            $this->_f3->reroute('guest');
+                        }
+
+                    }
+                    else{
+                        $this->_f3->set('error["user"]', 'No Account Found');
+                    }
                 }
+            }
+            else{
+                $this->_f3->set('error["$userEmail"]', 'Please Enter Valid Email');
             }
         }
 

@@ -56,3 +56,8 @@ function validName($name){
     $name = trim($name);
     return (strlen($name) >= 1 && !is_numeric($name));
 }
+
+//validate Password
+function validPassword($password){
+
+}
