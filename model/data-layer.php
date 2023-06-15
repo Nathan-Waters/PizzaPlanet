@@ -85,6 +85,42 @@ class DataLayer
 //        $id = $this->_dbh->lastInsertId();
     }
 
+    function saveCustom($crust, $sauce, $toppings)
+    {
+//    1. Define the query(test first!)
+        $sql = "INSERT INTO custom(crust, sauce, toppings) 
+                VALUES (:crust,:sauce,:toppings)";
+//    2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+//    3. Bind the parameters
+
+        $statement->bindValue(':crust', $crust);
+        $statement->bindValue(':sauce', $sauce);
+        $statement->bindValue(':toppings', $toppings);
+
+//    4. Execute
+        $statement->execute();
+//    5. Process the result, if there is one
+//        $id = $this->_dbh->lastInsertId();
+    }
+
+    function getLastCustom()
+    {
+        //PDO - Using Prepared Statements
+
+//    1. Define the query(test first!)
+        $sql = "SELECT * FROM custom ORDER BY date_time DESC LIMIT 1";
+//    2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+//    3. Bind the parameters
+//        $statement->bindParam(param_name, value, type);
+//    4. Execute
+        $statement->execute();
+//    5. Process the result, if there is one
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
     function getPastOrders($userID)
     {
         //PDO - Using Prepared Statements

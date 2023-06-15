@@ -314,13 +314,13 @@ class Controller
                 $toppings = null;
             }
 
-            if (isset($_POST['size']))
-            {
-                $size = $_POST['size'];
-            }
-            else{
-                $size = "";
-            }
+//            if (isset($_POST['size']))
+//            {
+//                $size = $_POST['size'];
+//            }
+//            else{
+//                $size = "";
+//            }
 
             $newPizza = new customPizza();
 
@@ -343,23 +343,30 @@ class Controller
 
             //Check the toppings
             if (validSelectedToppings($toppings)){
+                $toppings = implode(" ", $toppings);
                 $newPizza->setToppings($toppings);
             }
             else {
                 $this->_f3->set('errors["$toppings"]', 'Please Select a Topping');
             }
 
-            //Check the size
-            if (validSelectedSize($size)){
-                $newPizza->setSize($size);
-            }
-            else {
-                $this->_f3->set('errors["$size"]', 'Please Select a Pizza Size');
-            }
 
 
             if (empty( $this->_f3->get('errors'))) {
-                echo "passed";
+//                echo "passed";
+                $customArray = array();
+
+                $item = $GLOBALS['dataLayer']->saveCustom($newPizza->getCrust(),$newPizza->getSauce(), $newPizza->getToppings());
+                $lastCustom = $GLOBALS['dataLayer']->getLastCustom();
+                $newestPizza = $lastCustom[0]['custom_id'];
+                $orderArray = $this->_f3->get('SESSION.currentOrder');
+                if (!$orderArray) {
+                    $orderArray = array();
+                }
+                array_push($orderArray, $newestPizza);
+                $this->_f3->set('SESSION.currentOrder', $orderArray);
+//                array_push($finishedOrder, $newObject);
+                var_dump($orderArray);
             }
         }
 
