@@ -216,10 +216,16 @@ class Controller
         $thing = $this->_f3->get('SESSION.login');
 
         if($_SERVER['REQUEST_METHOD'] == "POST"){
-            $this->_f3->set('SESSION.login', null);
-            $this->_f3->set('SESSION.orders', null);
-            $this->_f3->reroute('login');
+            if($_POST['logout']=='true'){
+                $this->_f3->set('SESSION.login', null);
+                $this->_f3->set('SESSION.orders', null);
+                $this->_f3->reroute('login');
+            }
+
+//            $newItem = new Items("1", $_POST['type'], $_POST['name'], $_POST['desc']);
+//            $GLOBALS['dataLayer']->saveItem($newItem);
         }
+
 
         $user = $this->_f3->get('SESSION.login');
         $pastOrders = $GLOBALS['dataLayer']->getPastOrders($user->getUserID());
@@ -387,14 +393,14 @@ class Controller
         if(isset($orderArray)){
             for ($i = 0; $i < sizeof($orderArray); $i++){
                 $orderNums .= " " . $orderArray[$i];
-                $item = $GLOBALS['dataLayer']->getOrderItems($orderArray[$i]);
+
 
                 if(intval($orderArray[$i])>=1000){
-
-                    $newObject = new Items("1", 'pizza', "Custom Pizza!", "lots of toppings");
-
+                    $item = $GLOBALS['dataLayer']->getCustomItems(intval($orderArray[$i]));
+                    $newObject = new Items("1", 'pizza', "Custom Pizza!", "Crust: ".$item[0]['crust']."Sauce: ".$item[0]['sauce']."Toppings: ".$item[0]['toppings']);
 
                 } else {
+                    $item = $GLOBALS['dataLayer']->getOrderItems($orderArray[$i]);
                     $newObject = new Items("1", $item[0]['type'], $item[0]['name'], $item[0]['description']);
 
                 }

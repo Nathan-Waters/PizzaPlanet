@@ -66,6 +66,25 @@ class DataLayer
 //        $id = $this->_dbh->lastInsertId();
     }
 
+    function saveItem(Items $item)
+    {
+//    1. Define the query(test first!)
+        $sql = "INSERT INTO items(type, name, description)
+                VALUES (:name,:type,:description)";
+//    2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+//    3. Bind the parameters
+
+        $statement->bindValue(':type', $item->getType());
+        $statement->bindValue(':name', $item->getName());
+        $statement->bindValue(':description', $item->getDescription());
+
+//    4. Execute
+        $statement->execute();
+//    5. Process the result, if there is one
+//        $id = $this->_dbh->lastInsertId();
+    }
+
     function saveOrder($user, $orderItems, $total)
     {
 //    1. Define the query(test first!)
@@ -145,6 +164,23 @@ class DataLayer
 
 //    1. Define the query(test first!)
         $sql = "SELECT * FROM `items` WHERE type = '$type'";
+//    2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+//    3. Bind the parameters
+//        $statement->bindParam(param_name, value, type);
+//    4. Execute
+        $statement->execute();
+//    5. Process the result, if there is one
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
+    function getCustomItems($custom)
+    {
+        //PDO - Using Prepared Statements
+
+//    1. Define the query(test first!)
+        $sql = "SELECT * FROM custom WHERE custom_id = '$custom'";
 //    2. Prepare the statement
         $statement = $this->_dbh->prepare($sql);
 //    3. Bind the parameters
