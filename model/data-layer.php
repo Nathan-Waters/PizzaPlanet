@@ -85,6 +85,22 @@ class DataLayer
 //        $id = $this->_dbh->lastInsertId();
     }
 
+    function getPastOrders($userID)
+    {
+        //PDO - Using Prepared Statements
+
+//    1. Define the query(test first!)
+        $sql = "SELECT * FROM orders WHERE user_id = '$userID'";
+//    2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+//    3. Bind the parameters
+//        $statement->bindParam(param_name, value, type);
+//    4. Execute
+        $statement->execute();
+//    5. Process the result, if there is one
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    }
     function getItems($type)
     {
         //PDO - Using Prepared Statements

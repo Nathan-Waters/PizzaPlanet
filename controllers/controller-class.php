@@ -211,12 +211,36 @@ class Controller
     function admin()
     {
         $thing = $this->_f3->get('SESSION.login');
-        var_dump($thing);
+//        var_dump($thing);
 //        checking user based off global variable
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $this->_f3->set('SESSION.login', null);
             $this->_f3->reroute('login');
         }
+
+        $user = $this->_f3->get('SESSION.login');
+        $pastOrders = $GLOBALS['dataLayer']->getPastOrders($user->getUserID());
+        if(isset($pastOrders)){
+
+        $Orders = array();
+            for ($i = 0; $i<sizeof($pastOrders); $i++){
+                $orderItems = $pastOrders[$i]['order_items'];
+                $splitOrders = explode(' ', $orderItems);
+
+//                for ($j = 0; $j<sizeof($orderItems); $j++){
+//                    $item = $GLOBALS['dataLayer']->getOrderItems($splitOrders[$j]);
+//                    var_dump($item);
+//                }
+                $item = $GLOBALS['dataLayer']->getOrderItems($splitOrders[1]);
+                $newObject = new Items("1", $item[0]['type'], $item[0]['name'], $item[0]['description']);
+                array_push($finishedOrder, $newObject);
+                $this->_f3->set('SESSION.order', $finishedOrder);
+
+            }
+            var_dump($item[0]['id']);
+//            var_dump($pastOrders[1]['order_items']);
+        }
+
         // Display a view page
         $view = new Template();
         echo $view->render('views/admin.html');
@@ -225,10 +249,30 @@ class Controller
     //        checking user based off global variable
     function guest()
     {
+//        $this->_f3->get('SESSION.login');
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $this->_f3->set('SESSION.login', null);
             $this->_f3->reroute('login');
         }
+
+//        $user = $this->_f3->get('SESSION.login');
+//        $pastOrders = $GLOBALS['dataLayer']->getPastOrders($user->getUserID());
+//        if(isset($pastOrders)){
+//
+//
+//            for ($i = 0; $i<sizeof($pastOrders); $i++){
+//                $orderItems = $pastOrders[$i]['order_items'];
+//                $splitOrders = explode(' ', $orderItems);
+//
+////                for ($j=0; $j<sizeof())
+//                $item = $GLOBALS['dataLayer']->getOrderItems($splitOrders[0]);
+//
+//                var_dump($item);
+//            }
+//
+////            var_dump($pastOrders[1]['order_items']);
+//        }
+
         // Display a view page
         $view = new Template();
         echo $view->render('views/guest.html');
@@ -355,6 +399,7 @@ class Controller
             $this->_f3->set('SESSION.order', null);
             $this->_f3->set('SESSION.currentOrder', null);
             $total = 0.0;
+            $this->_f3->set('SESSION.total', $total);
             $orderNums = "";
             $this->_f3->reroute('login');
         }
