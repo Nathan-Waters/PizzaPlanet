@@ -147,13 +147,9 @@ class Controller
 
     function login()
     {
-
-
-
         $login = $this->_f3->get('SESSION.login');
 
 //        var_dump($_POST);
-
 
         //Checks to see if an account is logged in already
         if(isset($login)){
@@ -166,7 +162,7 @@ class Controller
         }
 
         //verifies user has an account
-        if($_SERVER['REQUEST_METHOD'] == "POST"){
+        if($_SERVER['REQUEST_METHOD'] == "POST") {
 
             if (isset($_POST['userEmail']))
             {
@@ -282,7 +278,6 @@ class Controller
 
     function order()
     {
-
             $this->_f3->set('crust', DataLayer::getCrust());
             $this->_f3->set('sauce', DataLayer::getSauce());
             $this->_f3->set('toppings', DataLayer::getToppings());
@@ -409,6 +404,4 @@ class Controller
         $view = new Template();
         echo $view->render('views/cart.html');
     }
-
-
 }

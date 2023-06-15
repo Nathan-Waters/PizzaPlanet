@@ -28,8 +28,16 @@ body {
     background-color: rgb(196,16,46);
 }
 
-.order-button:hover {
+.btn:hover {
     background-color: #00a500;
+}
+
+.sign-up-text {
+    margin: 0.5rem auto 0.5rem auto;
+}
+
+.center-text {
+    text-align: center;
 }
 
 /*Start of the section of code that is responsible for the header styles*/
@@ -68,8 +76,8 @@ img#joshsImage {
     width: 10rem;
 }
 
-
 /*Start of the section of code that is responsible for the footer styles*/
+
 footer{
     text-align: center;
     padding: 10px;
@@ -87,11 +95,12 @@ footer svg {
 
 /*Start of the section of code that is responsible for the orderPage styles*/
 
-button.btn.btn-primary.m-4.form-control{
+button.btn.btn-primary.form-control{
     background-color: rgba(189, 195, 199, 0.95);
     color: #191917;
     border: none;
-    width: 30%;
+    width: 100%;
+    margin: 1rem auto 1rem auto;
 }
 
 /*End of the section of code that is responsible for the orderPage styles*/
