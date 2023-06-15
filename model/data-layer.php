@@ -66,6 +66,25 @@ class DataLayer
 //        $id = $this->_dbh->lastInsertId();
     }
 
+    function saveOrder($user, $orderItems, $total)
+    {
+//    1. Define the query(test first!)
+        $sql = "INSERT INTO orders(user_id, order_items, total) 
+                VALUES (:user,:orderItems,:total)";
+//    2. Prepare the statement
+        $statement = $this->_dbh->prepare($sql);
+//    3. Bind the parameters
+
+        $statement->bindValue(':user', $user);
+        $statement->bindValue(':orderItems', $orderItems);
+        $statement->bindValue(':total', $total);
+
+//    4. Execute
+        $statement->execute();
+//    5. Process the result, if there is one
+//        $id = $this->_dbh->lastInsertId();
+    }
+
     function getItems($type)
     {
         //PDO - Using Prepared Statements

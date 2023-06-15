@@ -7,14 +7,16 @@ class User
     private $_last_name;
     private $_email;
     private $_password;
+    private $_userID;
 
-    function __construct($power = "guest", $first_name = "", $last_name = "", $email = "", $password = "")
+    function __construct($power = "guest", $first_name = "", $last_name = "", $email = "", $password = "", $userID = "")
     {
         $this->_power = $power;
         $this->_first_name = $first_name;
         $this->_last_name = $last_name;
         $this->_email = $email;
         $this->_password = $password;
+        $this->_userID = $userID;
     }
 
 //*************** POWER GET AND SET METHODS *****************
@@ -110,4 +112,21 @@ class User
     {
         return $this->_password;
     }
+
+    /**
+     * @return mixed|string
+     */
+    public function getUserID()
+    {
+        return $this->_userID;
+    }
+
+    /**
+     * @param mixed|string $userID
+     */
+    public function setUserID(mixed $userID): void
+    {
+        $this->_userID = $userID;
+    }
+
 }

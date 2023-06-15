@@ -175,12 +175,15 @@ class Controller
             //call all users
             $user = $GLOBALS['dataLayer']->userLogin();
 
+//            var_dump($user);
 
             //Val email and password
             if (validEmail($userEmail)){
                 for ($i = 0; $i < sizeof($user) ; $i++){
                     if($_POST['userEmail']==$user[$i]['email'] && $_POST['userPass'] == $user[$i]['password'] ){
-                        $login = new User($user[$i]['powers'], $user[$i]['first_name'], $user[$i]['last_name'], $user[$i]['email'], $user[$i]['password']);
+//                        var_dump($user[$i]['user_id']);
+                        $login = new User($user[$i]['powers'], $user[$i]['first_name'], $user[$i]['last_name'], $user[$i]['email'], $user[$i]['password'], $user[$i]['user_id']);
+
                         $this->_f3->set('SESSION.login', $login);
                         echo ('<br>');
                         if($user[$i]['powers']=="admin"){
@@ -207,6 +210,8 @@ class Controller
 
     function admin()
     {
+        $thing = $this->_f3->get('SESSION.login');
+        var_dump($thing);
 //        checking user based off global variable
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             $this->_f3->set('SESSION.login', null);
@@ -314,29 +319,47 @@ class Controller
     function cart()
     {
         $orderArray = $this->_f3->get('SESSION.currentOrder');
-//        var_dump($orderArray);
 
-//        $finishedOrder = array();
+        $finishedOrder = array();
+        $total = 0.0;
+
+        $orderNums = "";
+
+        $currentUser = $this->_f3->get('SESSION.login');
+        var_dump($currentUser->getUserID());
+
+
+
         if(isset($orderArray)){
-            echo "Order array: ";
-            var_dump($orderArray);
-
-            echo "<br><br>";
-            echo "Each order listed here: ";
             for ($i = 0; $i < sizeof($orderArray); $i++){
+                $orderNums .= " " . $orderArray[$i];
                 $item = $GLOBALS['dataLayer']->getOrderItems($orderArray[$i]);
 
-//                $id = $item[0]['id'];
-//                $this->_f3->
-//                $type = $item[0]['type'];
-//                $name = $item[0]['name'];
-//                $desc = $item[0]['description'];
-                $thing = $this->_f3->get('SESSION.currentOrder');
-                var_dump($_SESSION['currentOrder']);
-            }
+                $newObject = new Items("1", $item[0]['type'], $item[0]['name'], $item[0]['description']);
 
+                if($item[0]['type'] == "pizza"){
+                    $total += 12.99;
+                } elseif ($item[0]['type'] == "sides"){
+                    $total += 6.99;
+                } else {
+                    $total += 3.99;
+                }
+                array_push($finishedOrder, $newObject);
+                $this->_f3->set('SESSION.order', $finishedOrder);
+            }
+            $this->_f3->set('SESSION.total', $total * 1.08);
+        }
+        if($_SERVER['REQUEST_METHOD'] == "POST"){
+            $item = $GLOBALS['dataLayer']->saveOrder($currentUser->getUserID(), $orderNums, $total *1.08);
+            var_dump($item);
+            $this->_f3->set('SESSION.order', null);
+            $this->_f3->set('SESSION.currentOrder', null);
+            $total = 0.0;
+            $orderNums = "";
+            $this->_f3->reroute('login');
         }
 
+//        var_dump($orderNums);
         // Display a view page
         $view = new Template();
         echo $view->render('views/cart.html');
