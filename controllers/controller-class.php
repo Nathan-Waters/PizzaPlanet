@@ -69,7 +69,9 @@ class Controller
             $newItem =  $_POST['id'][0];
             array_push($orderArray, $newItem);
             $this->_f3->set('SESSION.currentOrder', $orderArray);
-            var_dump($orderArray);
+            if (isset($orderArray)) {
+                var_dump($orderArray);
+            }
 
         }
 
@@ -237,7 +239,7 @@ class Controller
                 $this->_f3->set('SESSION.order', $finishedOrder);
 
             }
-            var_dump($item[0]['id']);
+            //var_dump($item[0]['id']);
 //            var_dump($pastOrders[1]['order_items']);
         }
 
@@ -370,9 +372,7 @@ class Controller
         $orderNums = "";
 
         $currentUser = $this->_f3->get('SESSION.login');
-        var_dump($currentUser->getUserID());
-
-
+        // var_dump($currentUser->getUserID());
 
         if(isset($orderArray)){
             for ($i = 0; $i < sizeof($orderArray); $i++){

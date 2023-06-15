@@ -10,10 +10,10 @@
                     <img src="images/defaultPizza.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{ @SESSION.items['name'] }}</h5>
-                        <p class="card-text bg-secondary">{{ @SESSION.items['description'] }}</p>
+                        <p class="card-text">{{ @SESSION.items['description'] }}</p>
                             <form action="#" method="post">
                                 <input type="hidden" name="id[]" value="{{@SESSION.items['id']}}">
-                                <button type="submit" class="btn btn-primary">Buy that!</button>
+                                <button type="submit" class="btn btn-primary order-button">Buy that!</button>
                             </form>
                     </div>
                 </div>

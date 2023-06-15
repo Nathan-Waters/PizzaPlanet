@@ -13,8 +13,23 @@ body {
     width: 100%;
 }
 
+.card-title {
+    text-align: center;
+}
+
 .card-text {
-    color: white;
+    color: black;
+}
+
+.order-button {
+    margin: auto;
+    display: block;
+    width: 70%;
+    background-color: rgb(196,16,46);
+}
+
+.order-button:hover {
+    background-color: #00a500;
 }
 
 /*Start of the section of code that is responsible for the header styles*/
