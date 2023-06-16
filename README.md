@@ -32,9 +32,15 @@ ability to add new menu items.
 
 **6. Uses OOP, and utilizes multiple classes, including at least one inheritance relationship.**
 - For this Project, we utilized three classes: customPizza, items, and user.
+<<<<<<< HEAD
   -  items contains id, type, name, and description.
   - customPizza extends items and contains size, crust, sauce, and topping.
   - user contains power, first name, last name, email, and password.
+=======
+    -  items contains id, type, name, and description.
+    - customPizza extends items and contains size, crust, sauce, and topping.
+    - user contains power, first name, last name, email, and password.
+>>>>>>> 49b7a864938cb68f46d501ba8e40965ae120afe9
 
 **7. Contains full DocBlocks for all PHP files and follows PEAR standards.**
 - yes, all files include DocBlocks and follow PEAR standards.

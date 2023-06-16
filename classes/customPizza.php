@@ -2,7 +2,7 @@
 
 //namespace classes;
 
-class customPizza
+class customPizza extends Items
 {
     private $_crust;
     private $_sauce;
@@ -10,7 +10,8 @@ class customPizza
     private $_size;
 
     function __construct($size= "", $crust= "", $sauce= "", $toppings= ""){
-        $this->_size = $size;
+        parent:: __construct();
+//        $this->_size = $size;
         $this->_crust = $crust;
         $this->_sauce = $sauce;
         $this->_toppings = $toppings;
@@ -67,18 +68,18 @@ class customPizza
     /**
      * @return mixed
      */
-    public function getSize()
-    {
-        return $this->_size;
-    }
-
-    /**
-     * @param mixed $size
-     */
-    public function setSize($size)
-    {
-        $this->_size = $size;
-    }
+//    public function getSize()
+//    {
+//        return $this->_size;
+//    }
+//
+//    /**
+//     * @param mixed $size
+//     */
+//    public function setSize($size)
+//    {
+//        $this->_size = $size;
+//    }
 
     public function margherita()
     {
