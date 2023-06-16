@@ -145,7 +145,7 @@ class Controller
 
 
             if(isset($_POST['lastName'])){
-                
+
                 $lastName = $_POST['lastName'];
 
                 if (validName($lastName)){
