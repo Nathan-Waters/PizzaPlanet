@@ -5,6 +5,9 @@
     <form action="#" method="post">
         <div class="mb-3">
             <label for="newEmail" class="form-label">Email address</label>
+            <check if="{{ isset(@error['$email']) }}">
+                <span class="err">{{ @error['$email'] }}</span>
+            </check>
             <input type="email" class="form-control" id="newEmail" aria-describedby="emailHelp" name="newEmail">
             <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
@@ -18,6 +21,9 @@
         </div>
         <div class="mb-3">
             <label for="lastName" class="form-label">Last Name</label>
+            <check if="{{ isset(@error['$lastName']) }}">
+                <span class="err">{{ @error['$lastName'] }}</span>
+            </check>
             <input type="text" class="form-control" id="lastName" name="lastName">
         </div>
         <div class="row">

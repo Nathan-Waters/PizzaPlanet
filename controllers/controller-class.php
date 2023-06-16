@@ -132,26 +132,79 @@ class Controller
 
             $newUser->setPower("guest");
 
-            if(isset($_POST['firstName'])){
+            if(isset($_POST['firstName'])) {
                 $firstName = $_POST['firstName'];
-                $newUser->setFirstName($firstName);
+
+                if (validName($firstName)){
+                    $newUser->setFirstName($firstName);
+                }
+                else{
+                    $this->_f3->set('error["$lastName"]', 'Enter Valid Last Name');
+                }
             }
+
+
             if(isset($_POST['lastName'])){
+                
                 $lastName = $_POST['lastName'];
-                $newUser->setLastName($lastName);
+
+                if (validName($lastName)){
+                    $newUser->setLastName($lastName);
+                }
+                else{
+                    $this->_f3->set('error["$lastName"]', 'Enter Valid Last Name');
+                }
+
+
             }
+
             if(isset($_POST['newEmail'])){
                 $email = $_POST['newEmail'];
-                $newUser->setEmail($email);
+
+                if (validEmail($email)){
+                    $newUser->setEmail($email);
+                }
+                else{
+                        $this->_f3->set('error["$email"]', 'Enter Valid Email');
+                    }
+
             }
+
+//            if (validEmail($userEmail)){
+//                for ($i = 0; $i < sizeof($user) ; $i++){
+//                    if($_POST['userEmail']==$user[$i]['email'] && $_POST['userPass'] == $user[$i]['password'] ){
+//
+//                        $login = new User($user[$i]['powers'], $user[$i]['first_name'], $user[$i]['last_name'], $user[$i]['email'], $user[$i]['password'], $user[$i]['user_id']);
+//
+//                        $this->_f3->set('SESSION.login', $login);
+//                        echo ('<br>');
+//                        if($user[$i]['powers']=="admin"){
+//                            $this->_f3->reroute('admin');
+//                        } else {
+//                            $this->_f3->reroute('guest');
+//                        }
+//
+//                    }
+//                    else{
+//                        $this->_f3->set('error["user"]', 'No Account Found');
+//                    }
+//                }
+//            }
+
             if(isset($_POST['newPassword'])){
                 $newPassword = $_POST['newPassword'];
                 $newUser->setPassword($newPassword);
             }
 
-            $userID = $GLOBALS['dataLayer']->saveUser($newUser);
-            $this->_f3->reroute('login');
+            if (empty( $this->_f3->get('errors'))) {
+
+                $userID = $GLOBALS['dataLayer']->saveUser($newUser);
+                $this->_f3->reroute('login');
+
+            }
+
         }
+
         // Display a view page
         $view = new Template();
         echo $view->render('views/signUp.html');
@@ -363,7 +416,7 @@ class Controller
 
                 $customArray = array();
 
-                $item = $GLOBALS['dataLayer']->saveCustom($newPizza->getCrust(),$newPizza->getSauce(), $newPizza->getToppings());
+                $item = $GLOBALS['dataLayer']->saveCustom($newPizza->getCrust(), $newPizza->getSauce(), $newPizza->getToppings());
                 $lastCustom = $GLOBALS['dataLayer']->getLastCustom();
                 $newestPizza = $lastCustom[0]['custom_id'];
                 $orderArray = $this->_f3->get('SESSION.currentOrder');
@@ -399,7 +452,7 @@ class Controller
 
                 if(intval($orderArray[$i])>=1000){
                     $item = $GLOBALS['dataLayer']->getCustomItems(intval($orderArray[$i]));
-                    $newObject = new Items("1", 'pizza', "Custom Pizza!", "Crust: ".$item[0]['crust']."Sauce: ".$item[0]['sauce']."Toppings: ".$item[0]['toppings']);
+                    $newObject = new Items("1", 'pizza', "Custom Pizza!", "Crust: ".$item[0]['crust']."\nSauce: ".$item[0]['sauce']."\nToppings: ".$item[0]['toppings']);
 
                 } else {
                     $item = $GLOBALS['dataLayer']->getOrderItems($orderArray[$i]);
