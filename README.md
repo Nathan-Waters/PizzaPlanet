@@ -66,9 +66,6 @@ make changes to our mane page as well as add new items to the menu.
 **10. Your submission shows adequate effort for a final project in a full-stack web
   development course.**
 - Throughout this quarter we have learned a lot of new techniques and skills surrounding fullstack web development all of which we have been able to work into this project.
-  
-**BONUS: Incorporates Ajax that access data from a JSON file, PHP script, or API.**
-- Our project does not incorporate Ajax.
 
 # UML Class Diagram
 - ![img.png](images/img3.png)![img_1.png](images/img_1.png)
