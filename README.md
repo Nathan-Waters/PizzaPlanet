@@ -74,3 +74,6 @@ make changes to our mane page as well as add new items to the menu.
 - ![img.png](images/img3.png)![img_1.png](images/img_1.png)
 # ER Database Diagram
 ![img.png](images/erDatabaseDiagram.png)
+
+# Github Commit breakdown
+![image](https://github.com/Nathan-Waters/PizzaPlanet/assets/65692633/37ee3775-1a1c-4559-9d41-01d96db0204a)
